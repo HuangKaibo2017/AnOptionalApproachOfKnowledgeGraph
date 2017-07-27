@@ -36,7 +36,7 @@ from pyorient import OrientDB, DB_TYPE_GRAPH
 #                                  PyOrientDatabaseException)
 
 # TODO: add helper functions for:
-#       1. SQL injunction protection: Validate input value is valid or not.
+#       1. SQL injection protection: Validate input value is valid or not.
 class DbDelegate(object):
     """
     Simple wrapper of pyorient. The caller doesn't need to know it is orientdb client detail.
