@@ -57,7 +57,7 @@ class DbBuilder(object):
         self._cn = DbDelegate(host_name, db_user_name, db_user_password, db_name, db_port)
         self.clear_record = clear_record
         self.drop_schema = drop_schema
-        self._root = Path(os.path.dirname(os.path.realpath(__file__)))
+        self._root = Path(os.path.dirname(os.path.realpath(__file__))).parent
 
     def cleanup(self, drop_schema:bool=False, clear_record:bool=True):
         """
@@ -84,14 +84,14 @@ class DbBuilder(object):
         if not db_name and self.db_name != db_name and len(db_name) > 0:
             self.db_name = db_name
         batch_sql = ''
-        db_file = os.path.join(self._root, db_script_file)
+        db_file = os.path.join(self._root, 'db_script', db_script_file)
         with open(db_file, 'r', -1,encoding='utf-8-sig') as f:
             batch_sql = comment_out(f.read()).replace('\n','')
             print(batch_sql)
         self._cn.batch(batch_sql)
 
     def init(self, init_db_script:str, db_name:str):
-        init_db_file = os.path.join(self._root, init_db_script)
+        init_db_file = os.path.join(self._root, 'db_script', init_db_script)
         with open(init_db_file,'r', -1,encoding='utf-8-sig') as f:
             init_sql = comment_out(f.read()).replace('\n','')
             print(init_sql)
@@ -99,6 +99,6 @@ class DbBuilder(object):
 
 if __name__ == '__main__':
     db_builder = DbBuilder("127.0.0.1", "temp155", "zxASqw!@34", "test", 2424, True, True)
-    # db_builder.cleanup(True, True)
-    # db_builder.create('db_creation_script.txt', 'test')
+    db_builder.cleanup(True, True)
+    db_builder.create('db_creation_script.txt', 'test')
     db_builder.init('init_data.txt', 'test')
