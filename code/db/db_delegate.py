@@ -4,7 +4,7 @@ __author__ = 'Huang Kaibo <kamp_kbh@hotmail.com>'
 # The following code, derived from the bulbs project, carries this
 # license:
 """
-Copyright (c) 2012 James Thornton (http://jamesthornton.com)
+Copyright (c) 2017 Huang Kaibo (kamp_kbh@hotmail.com)
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
