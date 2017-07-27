@@ -27,3 +27,17 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
+
+import unittest
+from unittest import TestCase
+from db.db_builder import DbBuilder
+
+
+class TestDbBuilder(TestCase):
+    def test_builder(self):
+        db_build = DbBuilder("127.0.0.1", "temp155", "zxASqw!@34", "test", 2424)
+        db_build.cleanup(True, True)
+        db_build.create("db_creation_script.txt", "test")
+
+if __name__ == '__main__':
+    unittest.main()

@@ -30,8 +30,9 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import sys, re, os
 sys.path.insert(0, "..")
+from db_delegate import DbDelegate
+from pathlib import Path
 
-from .db_delegate import DbDelegate
 
 def comment_out(text):
     def replacer(match):
@@ -53,9 +54,10 @@ class DbBuilder(object):
         self.db_user_password = db_user_password
         self.db_name = db_name
         self.db_port = db_port
-        self._cn = DbDelegate(driver_name, host_name, db_user_name, db_user_password, db_name, db_port)
+        self._cn = DbDelegate(host_name, db_user_name, db_user_password, db_name, db_port)
         self.clear_record = clear_record
         self.drop_schema = drop_schema
+        self._root = Path(os.path.dirname(os.path.realpath(__file__)))
 
     def cleanup(self, drop_schema:bool=False, clear_record:bool=True):
         """
@@ -70,33 +72,33 @@ class DbBuilder(object):
         if clear_record:
             batch_sql += del_record_sql
 
-		if drop_schema:
-			rs = self._cn.command(
-				"SELECT name,abstract FROM (SELECT expand(classes) FROM metadata:schema) where name like 'v_%' or name like 'e_%' order by abstract")
-			if rs is not None:
-				for itemOfRs in rs:
-					batch_sql += "DROP CLASS {} UNSAFE;".format(itemOfRs.name)
-		self._cn.batch(batch_sql)
+        if drop_schema:
+            rs = self._cn.command(
+                "SELECT name,abstract FROM (SELECT expand(classes) FROM metadata:schema) where name like 'v_%' or name like 'e_%' order by abstract")
+            if rs is not None:
+                for itemOfRs in rs:
+                    batch_sql += "DROP CLASS {} UNSAFE;".format(itemOfRs.name)
+        self._cn.batch(batch_sql)
 
     def create(self, db_script_file:str, db_name:str):
         if not db_name and self.db_name != db_name and len(db_name) > 0:
             self.db_name = db_name
         batch_sql = ''
-        db_file = os.path.join(config.root_path, 'db', db_script_file)
+        db_file = os.path.join(self._root, db_script_file)
         with open(db_file, 'r', -1,encoding='utf-8-sig') as f:
             batch_sql = comment_out(f.read()).replace('\n','')
             print(batch_sql)
         self._cn.batch(batch_sql)
 
     def init(self, init_db_script:str, db_name:str):
-        init_db_file = os.path.join(config.root_path, 'db', init_db_script)
+        init_db_file = os.path.join(self._root, init_db_script)
         with open(init_db_file,'r', -1,encoding='utf-8-sig') as f:
             init_sql = comment_out(f.read()).replace('\n','')
             print(init_sql)
         self._cn.batch(init_sql)
 
 if __name__ == '__main__':
-    db_builder = DbBuilder('host_name', 'db_user_name', 'db_user_password', 'db_name', 'db_port', True, True)
-    db_builder.cleanup(True, True)
-    db_builder.create('orientdb-script.txt', 'db_name')
-    db_builder.init('initialization_data.txt', 'db_name')
+    db_builder = DbBuilder("127.0.0.1", "temp155", "zxASqw!@34", "test", 2424, True, True)
+    # db_builder.cleanup(True, True)
+    db_builder.create('db_creation_script.txt', 'db_name')
+    # db_builder.init('initialization_data.txt', 'db_name')

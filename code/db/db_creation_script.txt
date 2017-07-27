@@ -1,0 +1,5 @@
+CREATE CLASS v_user EXTENDS V;
+CREATE PROPERTY v_user.f_id Integer;
+CREATE PROPERTY v_user.f_name STRING;
+
+CREATE CLASS e_friend EXTENDS E;
