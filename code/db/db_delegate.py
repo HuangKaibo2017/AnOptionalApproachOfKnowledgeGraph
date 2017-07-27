@@ -66,8 +66,8 @@ class DbDelegate(object):
             self._cn.set_session_token(self._section_token)
         else:
             self._cn.db_open(self.db_name, self.db_user_name, self.db_user_password, DB_TYPE_GRAPH, '')
-            self._cn.set_session_token(True)
-            self._section_token = self._cn.get_session_token()
+            # self._cn.set_session_token(True)
+            # self._section_token = self._cn.get_session_token()
 
     def command(self, *args) -> any:
         self._init_connection()

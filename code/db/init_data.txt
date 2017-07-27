@@ -1,5 +1,5 @@
 BEGIN;
 LET user1 = CREATE VERTEX v_user SET f_id=1, f_name='default user1';
 LET user2 = CREATE VERTEX v_user SET f_id=2, f_name='default user2';
-CREATE EDGE e_friend FROM $user1 TO user2;
+CREATE EDGE e_friend FROM $user1 TO $user2;
 COMMIT RETRY 100;

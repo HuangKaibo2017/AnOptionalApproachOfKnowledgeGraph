@@ -30,7 +30,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import sys, re, os
 sys.path.insert(0, "..")
-from db_delegate import DbDelegate
+from db.db_delegate import DbDelegate
 from pathlib import Path
 
 
@@ -100,5 +100,5 @@ class DbBuilder(object):
 if __name__ == '__main__':
     db_builder = DbBuilder("127.0.0.1", "temp155", "zxASqw!@34", "test", 2424, True, True)
     # db_builder.cleanup(True, True)
-    db_builder.create('db_creation_script.txt', 'db_name')
-    # db_builder.init('initialization_data.txt', 'db_name')
+    # db_builder.create('db_creation_script.txt', 'test')
+    db_builder.init('init_data.txt', 'test')

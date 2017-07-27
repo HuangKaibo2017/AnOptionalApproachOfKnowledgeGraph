@@ -38,6 +38,7 @@ class TestDbBuilder(TestCase):
         db_build = DbBuilder("127.0.0.1", "temp155", "zxASqw!@34", "test", 2424)
         db_build.cleanup(True, True)
         db_build.create("db_creation_script.txt", "test")
+        db_build.init('init_data.txt', 'test')
 
 if __name__ == '__main__':
     unittest.main()
