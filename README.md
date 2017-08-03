@@ -1,4 +1,4 @@
-# An Optional Approach Of Knowledge Graph (KG) Real-word Practicing
+# An Optional Approach Of Knowledge Graph (KG) Real-world Practicing
 
 ## Why am I doing this?
 I am honored with some studying groups on KG real-world pracicing. They, talents of the group, select domain/sector/goal/feature.
