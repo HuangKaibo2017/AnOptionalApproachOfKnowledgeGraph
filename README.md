@@ -5,7 +5,7 @@ I am honored with some studying groups on KG real-world pracicing. They, talents
 I go with my long years exp on team organizing, project managing and tricks of problem-solving, specially on tech.
 Also, I would put my answers of group question, tricks, exp in this open source project in case, someone else might found useful to them. :)
 
-## How itself would be organzed or processed?
+## How it would be organzed or proceeded?
 I will try to make a book-like structure of it. And more ofternly, I will put answers in a folder and links them to the structure later. 
 So it would alway an alpha<-->beta stuff. Hope it would be too confusing. :P
 
