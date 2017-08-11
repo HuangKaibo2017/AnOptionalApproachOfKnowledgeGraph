@@ -1,7 +1,7 @@
 # An Optional Approach Of Knowledge Graph (KG) Real-world Practicing
 
 ## Why am I doing this?
-I am honored with some studying groups on KG real-world pracicing. They, talents of the group, select domain/sector/goal/feature.
+I am honored with some studying groups on KG real-world practicing. They, talents of the group, select domain/sector/goal/feature.
 I go with my long years exp on team organizing, project managing and tricks of problem-solving, specially on tech.
 Also, I would put my answers of group question, tricks, exp in this open source project in case, someone else might found useful to them. :)
 
